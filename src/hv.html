@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="/Users/Emmanuel/Documents/UNIR/Tarea3_HV/tarea_hv3/css/styles.css"/>
+<link rel="stylesheet" type="text/css" href="../css/styles.css"/>
 <script language="javascript" type="text/javascript"
 src="https://d3js.org/d3.v3.min.js"></script>
 <script type="text/javascript">
 function read(){
-d3.csv("/Users/Emmanuel/Documents/UNIR/Tarea3_HV/tarea_hv3/css/data/food.csv", function(data) {
+d3.csv("../data/food.csv", function(data) {
 data.forEach(function(d){
 d3.select("body").append("p").text(d.Food + " " + d. Deliciousness);
 });
