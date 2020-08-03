@@ -20,7 +20,7 @@ d3.select("body").append("p").text(d.Region + " " + d.Magnitud);
 </script>
 </head>
 <body>
-    <svg width="600" height="500"></svg>
+    <svg width="600" height="600"></svg>
 <script>
 
     var svg = d3.select("svg"),
@@ -59,7 +59,7 @@ d3.select("body").append("p").text(d.Region + " " + d.Magnitud);
          .attr("dy", ".15em")
          .attr("transform", "rotate(-65)")
          .append("text")
-         .attr("y", height + 50)
+         .attr("y", 550)
          .attr("x", width - 200)
          .attr("text-anchor", "end")
          .attr("stroke", "black")
