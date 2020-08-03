@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <style>
+        .bar {
+            fill: steelblue;
+        }
+    </style>
 <link rel="stylesheet" type="text/css" href="../css/styles.css"/>
 <script language="javascript" type="text/javascript"
 src="https://d3js.org/d3.v4.min.js"></script>
@@ -46,11 +51,22 @@ d3.select("body").append("p").text(d.Food + " " + d. Deliciousness);
          .call(d3.axisLeft(yScale).tickFormat(function(d){
              return "$" + d;
          }).ticks(10))
+         
          .append("text")
          .attr("y", 6)
          .attr("dy", "0.71em")
          .attr("text-anchor", "end")
          .text("Deliciousness");
+         
+         g.selectAll(".bar")
+         .data(data)
+         .enter().append("rect")
+         .attr("class", "bar")
+         .attr("x", function(d) { return xScale(d.Food); })
+         .attr("y", function(d) { return yScale(d.Deliciousness); })
+         .attr("width", xScale.bandwidth())
+         .attr("height", function(d) { return height - yScale(d.Deliciousness); });
+
 });
 </script>
 </body>
