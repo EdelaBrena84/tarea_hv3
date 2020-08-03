@@ -63,8 +63,8 @@ d3.select("body").append("p").text(d.Region + " " + d.Magnitud);
 
         g.append("g")
          .call(d3.axisLeft(yScale).tickFormat(function(d){
-             return "$" + d;
-         }).ticks(10))
+             return d;
+         }).ticks(5))
          .append("text")
          .attr("transform", "rotate(-90)")
          .attr("y", 6)
