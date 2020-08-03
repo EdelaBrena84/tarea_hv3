@@ -27,6 +27,13 @@ d3.select("body").append("p").text(d.Food + " " + d. Deliciousness);
         margin = 200,
         width = svg.attr("width") - margin,
         height = svg.attr("height") - margin;
+        
+    svg.append("text")
+       .attr("transform", "translate(100,0)")
+       .attr("x", 50)
+       .attr("y", 50)
+       .attr("font-size", "24px")
+       .text("XYZ Foods Stock Price")
 
 
     var xScale = d3.scaleBand().range ([0, width]).paddingInner(0.4),
@@ -45,17 +52,23 @@ d3.select("body").append("p").text(d.Food + " " + d. Deliciousness);
 
         g.append("g")
          .attr("transform", "translate(0," + height + ")")
-         .call(d3.axisBottom(xScale));
+         .call(d3.axisBottom(xScale))
+         .attr("y", height - 250)
+         .attr("x", width - 100)
+         .attr("text-anchor", "end")
+         .attr("stroke", "black")
+         .text("Food");
 
         g.append("g")
          .call(d3.axisLeft(yScale).tickFormat(function(d){
              return "$" + d;
          }).ticks(10))
-         
          .append("text")
+         .attr("transform", "rotate(-90)")
          .attr("y", 6)
-         .attr("dy", "0.71em")
+         .attr("dy", "-5.1em")
          .attr("text-anchor", "end")
+         .attr("stroke", "black")
          .text("Deliciousness");
          
          g.selectAll(".bar")
