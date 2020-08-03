@@ -35,8 +35,8 @@ d3.select("body").append("p").text(d.Food + " " + d. Deliciousness);
             throw error;
         }
         
-        xScale.domain(data.map(function(d) { return d.year; }));
-        yScale.domain([0, d3.max(data, function(d) { return d.value; })]);
+        xScale.domain(data.map(function(d) { return d.Food; }));
+        yScale.domain([0, d3.max(data, function(d) { return d.Deliciousness; })]);
 
         g.append("g")
          .attr("transform", "translate(0," + height + ")")
@@ -50,7 +50,7 @@ d3.select("body").append("p").text(d.Food + " " + d. Deliciousness);
          .attr("y", 6)
          .attr("dy", "0.71em")
          .attr("text-anchor", "end")
-         .text("value");
+         .text("Deliciousness");
 });
 </script>
 </body>
