@@ -52,12 +52,7 @@ d3.select("body").append("p").text(d.Food + " " + d. Deliciousness);
 
         g.append("g")
          .attr("transform", "translate(0," + height + ")")
-         .call(d3.axisBottom(xScale))
-         .attr("y", height - 250)
-         .attr("x", width - 100)
-         .attr("text-anchor", "end")
-         .attr("stroke", "black")
-         .text("Food");
+         .call(d3.axisBottom(xScale));
 
         g.append("g")
          .call(d3.axisLeft(yScale).tickFormat(function(d){
