@@ -10,10 +10,6 @@
 <script language="javascript" type="text/javascript"
 src="https://d3js.org/d3.v4.min.js"></script>
 
-<!-- Add 2 buttons -->
-<button onclick="changeColor('blue')">Get blue</button>
-<button onclick="changeColor('red')">Get red</button>
-
 <select id="selectButton"></select>
 
 <div id="my_dataviz"></div>
@@ -29,7 +25,9 @@ d3.select("body").append("p").text(d.Region + " " + d.Magnitud);
 </script>
 </head>
 <body>
+    
     <svg width="600" height="500"></svg>
+    
 <script>
 
 // set the dimensions and margins of the graph
@@ -75,6 +73,13 @@ svg2
   .attr("stroke", "black")
   .style("stroke-width", "2px")
   .style("opacity", 0.7)
+  
+  .append("text")
+       .attr("transform", "translate(100,0)")
+       .attr("x", 50)
+       .attr("y", 50)
+       .attr("font-size", "24px")
+       .text("Afectación a la población")
 
 
 
