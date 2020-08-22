@@ -93,6 +93,15 @@ d3.select("body").append("p").text(d.Region + " " + d.Magnitud);
          .attr("height", function(d) { return height - yScale(d.Magnitud); });
 
 });
+
+// This function is called by the buttons on top of the plot
+function changeColor(color){
+  d3.selectAll("rect")
+    .transition()
+    .duration(2000)
+    .style("fill", color)
+}
+
 </script>
 </body>
 </html> 
