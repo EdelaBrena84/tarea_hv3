@@ -59,30 +59,33 @@ var pie = d3.pie()
   .value(function(d) {return d.value; })
 var data_ready = pie(d3.entries(data))
 
+// shape helper to build arcs:
+var arcGenerator = d3.arc()
+  .innerRadius(0)
+  .outerRadius(radius)
+
 // Build the pie chart: Basically, each part of the pie is a path that we build using the arc function.
 svg2
-  .selectAll('whatever')
+  .selectAll('mySlices')
   .data(data_ready)
   .enter()
   .append('path')
-  .attr('d', d3.arc()
-    .innerRadius(0)
-    .outerRadius(radius)
-  )
-  .attr('fill', function(d){ return(color(d.data.key)) })
-  .attr("stroke", "black")
-  .style("stroke-width", "2px")
-  .style("opacity", 0.7)
-  
-  .append("text")
-       .attr("transform", "translate(100,0)")
-       .attr("x", 50)
-       .attr("y", 50)
-       .attr("font-size", "24px")
-       .text("Afectación a la población")
+    .attr('d', arcGenerator)
+    .attr('fill', function(d){ return(color(d.data.key)) })
+    .attr("stroke", "black")
+    .style("stroke-width", "2px")
+    .style("opacity", 0.7)
 
+svg2
 
-
+  .selectAll('mySlices')
+  .data(data_ready)
+  .enter()
+  .append('text')
+  .text(function(d){ return d.data.key})
+  .attr("transform", function(d) { return "translate(" + arcGenerator.centroid(d) + ")";  })
+  .style("text-anchor", "middle")
+  .style("font-size", 17)
 
 
 // This function is called by the buttons on top of the plot
