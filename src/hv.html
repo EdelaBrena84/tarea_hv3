@@ -32,6 +32,8 @@ d3.select("body").append("p").text(d.Region + " " + d.Magnitud);
 
 function Grafico(tipo) {
 
+        d3.selectAll("svg > *").remove();
+
         var svg = d3.select("svg"),
         margin = 200,
         width = svg.attr("width") - margin,
