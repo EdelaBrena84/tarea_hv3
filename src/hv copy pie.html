@@ -30,74 +30,6 @@ d3.select("body").append("p").text(d.Region + " " + d.Magnitud);
     
 <script>
 
-function Grafico(tipo) {
-
-        var svg = d3.select("svg"),
-        margin = 200,
-        width = svg.attr("width") - margin,
-        height = svg.attr("height") - margin;
-        
-    svg.append("text")
-       .attr("transform", "translate(100,0)")
-       .attr("x", 50)
-       .attr("y", 50)
-       .attr("font-size", "24px")
-       .text("Ranking de Sismos por Magnitud")
-
-
-    var xScale = d3.scaleBand().range ([0, width]).paddingInner(0.4),
-        yScale = d3.scaleLinear().range ([height, 7.2]);
-
-    var g = svg.append("g")
-               .attr("transform", "translate(" + 100 + "," + 100 + ")");
-    
-    d3.csv("../data/Terremotos.csv", function(error, data) {
-        if (error) {
-            throw error;
-        }
-        
-        xScale.domain(data.map(function(d) { return d.Region; }));
-        yScale.domain([0, d3.max(data, function(d) { return d.Magnitud; })]);
-
-        g.append("g")
-         .attr("transform", "translate(0," + height + ")")
-         .call(d3.axisBottom(xScale))
-         .selectAll("text")  
-         .style("text-anchor", "end")
-         .attr("dx", "-.8em")
-         .attr("dy", ".15em")
-         .attr("transform", "rotate(-65)")
-         .append("text")
-         .attr("y", height - 250)
-         .attr("x", width - 100)
-         .attr("text-anchor", "middle")
-         .attr("stroke", "black")
-         .text("Region");
-         
-
-        g.append("g")
-         .call(d3.axisLeft(yScale).tickFormat(function(d){
-             return d;
-         }).ticks(5))
-         .append("text")
-         .attr("transform", "rotate(-90)")
-         .attr("y", 6)
-         .attr("dy", "-5.1em")
-         .attr("text-anchor", "end")
-         .attr("stroke", "black")
-         .text("Magnitud");
-         
-         g.selectAll(".bar")
-         .data(data)
-         .enter().append("rect")
-         .attr("class", "bar")
-         .attr("x", function(d) { return xScale(d.Region); })
-         .attr("y", function(d) { return yScale(d.Magnitud); })
-         .attr("width", xScale.bandwidth())
-         .attr("height", function(d) { return height - yScale(d.Magnitud); });
-
-});
-
 // set the dimensions and margins of the graph
 var width = 450
     height = 450
@@ -154,7 +86,7 @@ svg2
   .attr("transform", function(d) { return "translate(" + arcGenerator.centroid(d) + ")";  })
   .style("text-anchor", "middle")
   .style("font-size", 17)
-}
+
 
 // This function is called by the buttons on top of the plot
 function changeColor(color){
@@ -164,7 +96,7 @@ function changeColor(color){
     .style("fill", color)
 }
 
-var allGroup = ["svg", "svg2"]
+var allGroup = ["black", "blue", "red"]
 
 d3.select("#selectButton")
       .selectAll('myOptions')
