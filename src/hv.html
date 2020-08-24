@@ -100,15 +100,13 @@ function Grafico(tipo) {
 
 });
 
-// set the dimensions and margins of the graph
+
 var width = 450
     height = 450
     margin = 40
 
-// The radius of the pieplot is half the width or half the height (smallest one). I subtract a bit of margin.
 var radius = Math.min(width, height) / 2 - margin
 
-// append the svg object to the div called 'my_dataviz'
 var svg2 = d3.select("#my_dataviz")
   .append("svg")
     .attr("width", width)
@@ -116,25 +114,24 @@ var svg2 = d3.select("#my_dataviz")
   .append("g")
     .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
 
-// Create dummy data
+
 var data = {Si: 6, No: 19}
 
-// set the color scale
 var color = d3.scaleOrdinal()
   .domain(data)
   .range(["red", "blue"])
 
-// Compute the position of each group on the pie:
+
 var pie = d3.pie()
   .value(function(d) {return d.value; })
 var data_ready = pie(d3.entries(data))
 
-// shape helper to build arcs:
+
 var arcGenerator = d3.arc()
   .innerRadius(0)
   .outerRadius(radius)
 
-// Build the pie chart: Basically, each part of the pie is a path that we build using the arc function.
+
 svg2
   .selectAll('mySlices')
   .data(data_ready)
@@ -158,14 +155,6 @@ svg2
   .style("font-size", 17)
 }
 
-// This function is called by the buttons on top of the plot
-function changeColor(color){
-  d3.selectAll("rect")
-    .transition()
-    .duration(2000)
-    .style("fill", color)
-}
-
 var allGroup = ["svg", "svg2"]
 
 d3.select("#selectButton")
@@ -173,17 +162,15 @@ d3.select("#selectButton")
      	.data(allGroup)
       .enter()
     	.append('option')
-      .text(function (d) { return d; }) // text showed in the menu
-      .attr("value", function (d) { return d; }) // corresponding value returned by the button
+      .text(function (d) { return d; }) 
+      .attr("value", function (d) { return d; }) 
 
 d3.select("#selectButton").on("change", function(d) {
-        // recover the option that has been chosen
+        
         var selectedOption = d3.select(this).property("value")
-        // run the updateChart function with this selected option
+        
         Grafico(selectedOption)
     })
-
-
 
 </script>
 </body>
